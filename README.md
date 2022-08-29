@@ -10,7 +10,15 @@ I created this repository to share the code for these projects.
 
 ## [LikertMaker](LikertMaker_29Aug2022.qmd)
 
+<!---
+![skewed distribution](resources/skew_5.png)
+--->
+
+<img src="resources/skew_5.png" align="left" width="240px"/>
 A novel method to reproduce Likert-scale data using only mean and standard deviation so that they can be properly visualised and interpreted
+
+<br clear="left"/>
+
 
 ### Application
 
