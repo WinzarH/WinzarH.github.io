@@ -8,7 +8,7 @@ I created this repository to share the code for these projects.
 
 # Contents
 
-## LikertMaker
+## [LikertMaker](LikertMaker_29Aug2022.qmd)
 
 A novel method to reproduce Likert-scale data using only mean and standard deviation so that they can be properly visualised and interpreted
 
