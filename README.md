@@ -30,7 +30,7 @@ You will need to have installed:
  
  _____
  
-## Correlator
+## [Correlator](likert_correlate.R)
 
 A program that rearranges data points in a vector so that two vectors have a predefined correlation.
 
