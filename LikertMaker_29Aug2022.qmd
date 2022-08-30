@@ -86,70 +86,35 @@ plotOutput("myplotout", width = "90%")
 
 ```
 
-## Background
+## ANZMAC 2022 paper
 
 ### Reconstructing Likert-scale data with only reported first and second moments
-#### Hume Winzar, Macquarie University
-Paper submitted to the ANZMAC conference, Perth,  December 2022
 
-#### Abstract: 
-Most simulations of Likert-scale data are created to test analysis methods before finalising a questionnaire. Here, however, we want to reproduce published results where only the first two moments (mean and variance) are reported. Many publications report only means and standard deviations of rating scales, often only the means. The boundaries of a scale (1-5, 1-7, etc.) will often produce skewed data, so such simple statistics can be misleading. We demonstrate a novel method to reproduce Likert-scale data using only mean and standard deviation so that they can be properly visualised and interpreted. The algorithm is surprisingly accurate. R code and an interactive Shiny app are available from the author. Such tools raise ethical concerns. 
+Hume Winzar
 
-**Keywords**: Likert Scale, Data Visualisation, Simulation, R, Optimisation 
+Paper submitted to the ANZMAC conference, Perth, December 2022
 
-#### Introduction 
+#### Abstract:
 
-In this study, we want to reproduce published results given only the first two moments (mean and variance). (The third and fourth moments are skewness and kurtosis respectively.) In many published reports only the means and standard deviations of rating scales are reported, often only the means. Scale boundaries (1-5, 1-7, etc.) cause most distributions to be skewed. If the standard deviation of a scale is more than the distance of the mean from the scale boundary, then most cases are closer to the boundaries than we might expect. Simple univariate statistics can be misleading, as we can see in **Figure 1**. 
+Most simulations of Likert-scale data are created to test analysis methods before finalising a questionnaire. Here, however, we want to reproduce published results where only the first two moments (mean and variance) are reported. Many publications report only means and standard deviations of rating scales, often only the means. The boundaries of a scale (1-5, 1-7, etc.) will often produce skewed data, so such simple statistics can be misleading. We demonstrate a novel method to synthesise Likert-scale data using only mean and standard deviation so that they can be properly visualised and interpreted. The algorithm is surprisingly accurate compared with known data. 
 
-#### Background 
+__Keywords__: Likert Scale, Data Visualisation, Simulation, R, Optimisation
 
-A Likert scale is the mean, or sum, of several ordinal rating scales. They are bipolar (usually “agree-disagree”) responses to propositions that are determined to be moderately-to-highly correlated, and capturing various facets of a construct. A Likert scale that is constructed with, say, five items (questions) will have a summed range of between 5 (all rated ‘1’) and 25 (all rated ‘5’) with all integers in between, and the mean range will be ‘1’ to ‘5’ with intervals of 1/5=0.20. A Likert scale constructed from eight items will have a summed range between 8 (all rated ‘1’) and 40 (all rated ‘5’) with all integers in between, and the mean range will be ‘1’ to ‘5’ with intervals of 1/8=0.125. 
-
-When researchers simulate Likert scales to create dummy data to check analyses ahead of finalising a questionnaire, they typically will resample with a predetermined probability distribution (Heinz, 2021). Extensions of the same probabilistic distribution idea are available for correlated data for preliminary testing of structural equation models (Grønneberg, Foldnes, & Marcoulides, 2022; Touloumis, 2016). 
-
-Figure 1: Scale boundaries cause skewed distributions
-
-Figure 2: Sample setup for Evolutionary algorithm in Excel Solver
- 
-#### Method 
-
-Unlike the task of creating mock data, the challenge in this study is to reproduce published/reported data with a predetermined mean and standard deviation. A “probability distribution” approach is inapplicable because we cannot guarantee the desired moments. We found no examples of this simulation task in the social sciences or coding literature. We hit upon a workable solution in the Evolutionary algorithm in the Excel Solver add-in, as illustrated in **Figure 2**. In this example, we replicated a 10-item 7-point scale with mean=5.5, sd=1.0. Ten items make a summated scale of integers ranging between 10 and 70. With two criteria, mean and standard deviation, the goal is to minimise the difference between the current mean and the target mean, and between the current sd and the target sd. We amplify the differences by calculating the difference between the squares of current and target moments. The objective value to be minimised is simply the sum of the differences. This works very well in Excel but can take many minutes (hours) for a sample size in the hundreds. 
-
-A more efficient method of achieving similar results is an evolutionary algorithm in R, Python or Julia (and, no doubt, other languages). We chose the **DEoptim** package for **R** (Mullen, Ardia, Gil, Windover, & Cline, 2011) which produces simulated data with desired properties in much less time, creating the opportunity to produce multiple data sets. With further code, we can rearrange values so that simulated Likert scales have predefined correlations. Sample code is provided on the author’s GitHub site *(reference to be added if accepted)*. 
-
-#### Results 
-
-**Figure 3** illustrates nine simulations for a five-point, five-item, Likert scale with a mean=2 and three runs each with standard deviations of [0.5, 1.0, 1.5]. Charts are overlaid with box plots to emphasise any skewness. We can see in runs (1, 2, 3) with mean=2, sd=0.5, that observations are symmetrically distributed. A larger sample size produces a close-to-normal distribution around the mean and median. Runs (4, 5, 6) with mean=2, sd=1.0, show positively-skewed observations, so that the median is noticeably less than the mean. Runs (7, 8, 9) with mean=2, sd=1.5, show observations are heavily skewed right, and some observations need to gather on the far end of the scale to achieve the required standard deviation. If the sd is any larger, then the optimisation algorithm may not converge. That is, the combination of moments is infeasible. In all cases the patterns are similar for any defined first and second moments. The algorithm and code used here apply to any summated rating scale with any number of items and any scale range. Simulated data are surprisingly consistent with known rating scale data. 
-
-Figure 3: Sample runs for 5-item, 5-point Likert Scale – mean=2 stdev=[0.5, 1.0, 1.5]
- 
-#### Discussion
-
-The optimisation algorithm produces simulated data with the desired mean and standard deviations accurate to at least two decimal places. When this doesn’t occur, then the combination of moments is infeasible. The purpose of this study is to simulate data like that in a published report for easier visualisation, comparison, and analysis. Additional optimisation code lets us rearrange values to produce correlated data. Such tools can be misused and raise potential ethical issues for researchers that are worthy of discussion at the conference. 
-
-
-#### References 
-
-Grønneberg, S., Foldnes, N., & Marcoulides, K. M. (2022). *covsim: An R Package for Simulating Non-Normal Data for Structural Equation Models Using Copulas*. **Journal of Statistical Software**, 102(3), 1-45. [doi:10.18637/jss.v102.i03](https://www.jstatsoft.org/article/view/v102i03)
-
-Heinz, A. (2021). **Simulating Correlated Likert Scale Data**. BLOG post Retrieved from [https://glaswasser.github.io/simulating-correlated-likert-scale-data/](https://glaswasser.github.io/simulating-correlated-likert-scale-data/)
-
-Mullen, K., Ardia, D., Gil, D., Windover, D., & Cline, J. (2011). *'DEoptim': An R Package for Global Optimization by Differential Evolution*. **Journal of Statistical Software**, 40(5), 1-26. [doi:10.18637/jss.v040.i06](https://www.jstatsoft.org/article/view/v040i06)
-
-Touloumis, A. (2016). *Simulating Correlated Binary and Multinomial Responses under Marginal Model Specification: The SimCorMultRes Package*. **The R Journal**, 8(2), 79-81. Retrieved from [https://journal.r-project.org/archive/2016/RJ-2016-034/index.html](https://journal.r-project.org/archive/2016/RJ-2016-034/index.html)
 
 :::
 
 ```{r server_function}
 #| context: server
 
+
 ### install required packages if needed
 requiredPackages <- c("dplyr", "ggplot2", "shinybusy", "DEoptim")
-for (package in requiredPackages) { # Installs packages if not yet installed
+for (package in requiredPackages) { 
   if (!requireNamespaces(package, quietly = TRUE)) {
-    install.packages(package)
+    install.packages(package, dependencies = TRUE)
   }
 }
+
 
 ### load required packages
 library(dplyr)      # data manipulation
