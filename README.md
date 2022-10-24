@@ -8,7 +8,7 @@ I created this repository to share the code for these projects.
 
 # Contents
 
-## [LikertMaker](LikertMaker_29Aug2022.qmd)
+## [LikertMaker](LikertMaker_24Oct2022.R)
 
 <!---
 ![skewed distribution](resources/skew_5.png)
