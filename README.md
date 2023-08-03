@@ -10,6 +10,10 @@ I created this repository to share the code for these projects.
 
 ## [LikertMaker](LikertMaker_24Oct2022.R)
 
+### NOTE: superseded by the LikertMakeR package available on CRAN. 
+
+The Development version is accesible from this GitHub repository at <https://github.com/WinzarH/LikertMakeR> 
+
 <!---
 ![skewed distribution](resources/skew_5.png)
 --->
@@ -39,6 +43,10 @@ You will need to have installed:
  _____
  
 ## [Correlator](likert_correlate.R)
+
+### Note: superseded. 
+
+Now in the *LikertMakeR* package
 
 A program that rearranges data points in a vector so that two vectors have a predefined correlation.
 
